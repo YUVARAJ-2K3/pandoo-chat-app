@@ -1,0 +1,76 @@
+scalar AWSDateTime
+
+type UserProfile {
+  id: ID!
+  username: String!
+  email: String!
+  name: String!
+  avatar: String!
+  status: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Conversation {
+  id: ID!
+  title: String
+  isGroup: Boolean!
+  members: [ID!]!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Message {
+  conversationId: ID!
+  sk: String!
+  msgId: ID!
+  senderId: ID!
+  type: MessageType!
+  body: String
+  mediaKey: String
+  createdAt: AWSDateTime!
+  readBy: [ID!]!
+}
+
+type MessageConnection {
+  items: [Message!]!
+  nextToken: String
+}
+
+enum MessageType {
+  text
+  image
+  file
+}
+
+input CreateUserProfileInput {
+  id: ID!
+  username: String!
+  email: String!
+  name: String!
+  avatar: String!
+  status: String!
+}
+
+type Mutation {
+  createUserProfile(input: CreateUserProfileInput!): UserProfile!
+  createConversation(memberIds: [ID!]!, title: String): Conversation!
+  createDirectConversation(otherUserId: ID!): Conversation!
+  sendMessage(
+    conversationId: ID!,
+    type: MessageType!,
+    body: String,
+    mediaKey: String
+  ): Message!
+}
+
+type Query {
+  getUserProfile(userId: ID!): UserProfile
+  myConversations: [Conversation!]!
+  getOrCreateConversation(userIds: [ID!]!): Conversation!
+  messages(conversationId: ID!, limit: Int, nextToken: String): MessageConnection!
+}
+
+type Subscription {
+  onMessageAdded(conversationId: ID!): Message @aws_subscribe(mutations: ["sendMessage"])
+}

@@ -1,0 +1,395 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   GLOBAL STYLES AND ANIMATIONS
+   ============================================================================ */
+
+/* Custom CSS Variables */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --error-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  --border-radius: 0.75rem;
+  --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
+}
+
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+  overflow-x: hidden;
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+/* ============================================================================
+   BUTTON STYLES
+   ============================================================================ */
+
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-gray-700 border-gray-300 hover:bg-gray-50 focus:ring-gray-500 hover:shadow-md transform hover:scale-105 active:scale-95;
+}
+
+.btn-outline {
+  @apply bg-transparent text-blue-600 border-blue-600 hover:bg-blue-50 focus:ring-blue-500 hover:shadow-md transform hover:scale-105 active:scale-95;
+}
+
+/* ============================================================================
+   FORM STYLES
+   ============================================================================ */
+
+.input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+}
+
+.input-search {
+  @apply pl-10 pr-4;
+}
+
+/* ============================================================================
+   CARD STYLES
+   ============================================================================ */
+
+.card {
+  @apply bg-white rounded-xl shadow-md border border-gray-200 p-6 transition-all duration-300 hover:shadow-lg hover:scale-105;
+}
+
+.card-hover {
+  @apply hover:shadow-xl hover:scale-105 transition-all duration-300;
+}
+
+/* ============================================================================
+   MODAL STYLES
+   ============================================================================ */
+
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4;
+}
+
+.modal-content {
+  @apply bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto;
+}
+
+/* ============================================================================
+   SIDEBAR STYLES
+   ============================================================================ */
+
+.sidebar {
+  @apply bg-white border-r border-gray-200 shadow-sm;
+}
+
+.sidebar-item {
+  @apply p-4 border-b border-gray-100 cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:shadow-sm;
+}
+
+.sidebar-item.active {
+  @apply bg-blue-50 border-l-4 border-l-blue-500;
+}
+
+/* ============================================================================
+   MESSAGE STYLES
+   ============================================================================ */
+
+.message-bubble {
+  @apply max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-sm;
+}
+
+.my-message {
+  @apply bg-blue-600 text-white ml-auto;
+}
+
+.other-message {
+  @apply bg-gray-100 text-gray-800;
+}
+
+/* ============================================================================
+   STATUS INDICATORS
+   ============================================================================ */
+
+.status-indicator {
+  @apply flex items-center gap-2 text-sm font-medium px-3 py-1 rounded-full;
+}
+
+.status-online {
+  @apply text-green-600 bg-green-100;
+}
+
+.status-loading {
+  @apply text-blue-600 bg-blue-100;
+}
+
+.status-offline {
+  @apply text-red-600 bg-red-100;
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Animation Classes */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .sidebar {
+    @apply fixed left-0 top-0 h-full z-40 transform -translate-x-full transition-transform duration-300;
+  }
+  
+  .sidebar.show {
+    @apply transform translate-x-0;
+  }
+  
+  .main-content {
+    @apply w-full;
+  }
+  
+  .message-bubble {
+    @apply max-w-[85%] mx-2;
+  }
+  
+  .btn {
+    @apply text-base py-3;
+  }
+  
+  .input {
+    @apply text-base py-3;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    @apply p-4;
+  }
+  
+  .modal-content {
+    @apply mx-2;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+.glass-effect {
+  @apply bg-white bg-opacity-10 backdrop-blur-lg border border-white border-opacity-20;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.shadow-glow-purple {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+}
+
+/* ============================================================================
+   SCROLLBAR STYLING
+   ============================================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors duration-200;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* ============================================================================
+   FOCUS STATES
+   ============================================================================ */
+
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+.focus-ring-white {
+  @apply focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+}
+
+/* ============================================================================
+   LOADING STATES
+   ============================================================================ */
+
+.loading-spinner {
+  @apply w-4 h-4 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin;
+}
+
+.loading-dots {
+  @apply flex space-x-1;
+}
+
+.loading-dots > div {
+  @apply w-2 h-2 bg-current rounded-full animate-pulse;
+}
+
+.loading-dots > div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots > div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ============================================================================
+   TRANSITIONS
+   ============================================================================ */
+
+.transition-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-transform {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-colors {
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}
